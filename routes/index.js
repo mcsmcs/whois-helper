@@ -18,7 +18,7 @@ exports.index = function(req, res){
         whois.registrant = {};
         whois.dates = {};
         whois.status = [];
-        whois.nameservers = [];
+        whois.nameservers = {};
 
         var regexActions = {
             'Registrar': function(){ whois.registrar.name = value; },
@@ -44,7 +44,7 @@ exports.index = function(req, res){
             'Registrant Fax': function(){ whois.registrant.fax = value; },
             'Registrant Fax Ext': function(){ whois.registrant.faxext = value; },
             'Registrant Email': function(){ whois.registrant.email = value; },
-            'Name Server': function(){ whois.nameservers.push(value); }
+            'Name Server': function(){ whois.nameservers[value.toLowerCase()] = true; }
         }
 
         var lines = stdout.split('\n');
